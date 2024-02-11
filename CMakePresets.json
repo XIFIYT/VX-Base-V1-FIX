@@ -1,0 +1,84 @@
+﻿{
+  "version": 3,
+  "buildPresets": [
+    {
+      "name": "x64-debug",
+      "displayName": "x64 Debug",
+      "description": "Ciblez Windows (64 bits) avec l'environnement de développement Visual Studio. (Debug)",
+      "configurePreset": "x64-debug"
+    },
+    {
+      "name": "x64-release-debug",
+      "displayName": "x64 Release Debug",
+      "description": "Ciblez Windows (64 bits) avec l'environnement de développement Visual Studio. (RelWithDebInfo)",
+      "configurePreset": "x64-release-debug"
+    },
+    {
+      "name": "x64-release",
+      "displayName": "x64 Release",
+      "description": "Ciblez Windows (64 bits) avec l'environnement de développement Visual Studio. (RelWithDebInfo)",
+      "configurePreset": "x64-release"
+    }
+  ],
+  "configurePresets": [
+    {
+      "name": "windows-base",
+      "description": "Ciblez Windows avec l'environnement de développement Visual Studio.",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "installDir": "${sourceDir}/out/install/${presetName}",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "cl.exe",
+        "CMAKE_CXX_COMPILER": "cl.exe"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "x64-debug",
+      "displayName": "x64 Debug",
+      "description": "Ciblez Windows (64 bits) avec l'environnement de développement Visual Studio. (Debug)",
+      "inherits": "windows-base",
+      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "installDir": "${sourceDir}/out/install/${presetName}",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "x64-release-debug",
+      "displayName": "x64 Release Debug",
+      "description": "Ciblez Windows (64 bits) avec l'environnement de développement Visual Studio. (RelWithDebInfo)",
+      "inherits": "x64-debug",
+      "binaryDir": "${sourceDir}/out/build/ReleaseDev",
+      "installDir": "${sourceDir}/out/install/ReleaseDev",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+        "DEV_BUILD": "ON"
+      }
+    },
+    {
+      "name": "x64-release",
+      "displayName": "x64 Release",
+      "description": "Ciblez Windows (64 bits) avec l'environnement de développement Visual Studio.",
+      "inherits": "windows-base",
+      "binaryDir": "${sourceDir}/out/build/Release",
+      "installDir": "${sourceDir}/out/install/Release",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    }
+  ]
+}
