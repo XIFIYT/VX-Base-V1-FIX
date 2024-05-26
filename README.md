@@ -1,5 +1,5 @@
 # VX-Base
-bbv1 custom 
+BigBase V1 custom 
 
 # Content
 
@@ -8,3 +8,7 @@ bbv1 custom
 - Settings.json
 - Save preset
 - Dynamic Hooking
+
+# Credit
+- XIFI
+- Pockaking
